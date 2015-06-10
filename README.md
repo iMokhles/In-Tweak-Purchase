@@ -1,6 +1,6 @@
 # In-Tweak Purchase
 
-* in-tweak purchase system works with Paypal-SDK and ParseSDK.
+* in-tweak purchase system works with [Paypal-iOS-SDK](https://github.com/paypal/PayPal-iOS-SDK) and [ParseSDK](https://www.parse.com).
 * this doesn't use any Private API all of the APIs used are Public.
 * You can use it within any iOS application
 
