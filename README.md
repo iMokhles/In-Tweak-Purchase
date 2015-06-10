@@ -1,5 +1,10 @@
 # In-Tweak Purchase
 
+![Platform](https://img.shields.io/badge/Platform-iOS-lightgrey.svg?style=flat)
+![Platform](https://img.shields.io/badge/Platform-mac-lightgrey.svg?style=flat)
+![Level](https://img.shields.io/badge/Language-Objective--C-blue.svg)
+![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)
+
 * in-tweak purchase system works with [Paypal-iOS-SDK](https://github.com/paypal/PayPal-iOS-SDK) and [ParseSDK](https://www.parse.com).
 * this doesn't use any Private API all of the APIs used are Public.
 * You can use it within any iOS application
