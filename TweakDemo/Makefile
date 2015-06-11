@@ -11,7 +11,7 @@ TWEAK_NAME = TweakDemo
 TweakDemo_FILES = Tweak.xm
 TweakDemo_FRAMEWORKS = UIKit Foundation CoreGraphics QuartzCore CoreImage Accelerate AVFoundation AudioToolbox MobileCoreServices Social Accounts MediaPlayer ImageIO CoreMedia MessageUI AssetsLibrary Security SystemConfiguration
 TweakDemo_PRIVATE_FRAMEWORKS = AppSupport
-TweakDemo_LIBRARIES = MobileGestalt DevelopersLib_ET sqlite3 z stdc++.6
+TweakDemo_LIBRARIES = MobileGestalt sqlite3 z stdc++.6
 TweakDemo_LDFLAGS = -F./Frameworks/ -framework InTweakPurchase -framework Bolts -framework Parse -framework ParseCrashReporting -framework ParseFacebookUtils -framework ParseUI
 TweakDemo_CFLAGS += -F./Frameworks/ 
 
