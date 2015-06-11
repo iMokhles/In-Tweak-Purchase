@@ -35,7 +35,7 @@
 
 // Paypal Environments can be found inside InTweakPurchasePaypal.h
 // USER_DEFAULT_ID is an NSUserDefaults key to save it after complete the purchase
-[[InTweakPurchasePaypal sharedInTweak] initWithClienID:@"PAYPAL_CLIENT_ID" secretID:@"PAYPAL_CLIENT_ID" environment:PayPal_Environment andPurchaseID:USER_DEFAULT_ID];
+[[InTweakPurchasePaypal sharedInTweak] initWithClienID:@"PAYPAL_CLIENT_ID" secretID:@"PAYPAL_CLIENT_ID" environment:PayPal_Environment andPurchaseID:@"USER_DEFAULT_ID"];
 
 // Configure your purchase item
 
@@ -46,6 +46,23 @@
 // ex: ITEM_SKU = @"RMV-353553"
 
 [[InTweakPurchasePaypal sharedInTweak] presentPaypalViewControllerFromViewController:self WithItemName:@"ITEM_NAME" inTweakID:@"ITEM_ID" Description:@"ITEM_DESCRIPTION" Quantity:1 Price:@"PRICE" Currency:@"USD" SKU:@"ITEM_SKU"];
+
+// Checking purchase 
+
+// u can use it as u want
+[[InTweakPurchasePaypal sharedInTweak] checkTransactionInfo:@"com.imokhles.testInTweak-1" transInfo:^(NSDictionary *info, BOOL success) {
+    
+    /*
+    Info - Output ******* {
+        "device_secret_string" = BE51C5D3F7063C1057E0776459893;
+        "trans_create_time" = "2015-06-11T19:44:32Z";
+        "trans_id" = "PAY-NONETWORKPDEXAMPLE123";
+        "trans_state" = approved;
+        }
+    */
+    [[NSUserDefaults standardUserDefaults] setBool:success forKey:@"USER_DEFAULT_ID"];
+    [self performSelectorOnMainThread:@selector(testPurchaseNotification:) withObject:nil waitUntilDone:YES];
+}];
 
 
 ```
@@ -79,8 +96,8 @@
 
 **Notes**
 
-* i think it will be available in Cydia as Hidden package, so
-* don't forget to depend it in your control file com.imokhles.InTweakPurchase
+* ~~i think it will be available in Cydia as Hidden package, so~~
+* ~~don't forget to depend it in your control file com.imokhles.InTweakPurchase~~
 
 #### Contacts
 

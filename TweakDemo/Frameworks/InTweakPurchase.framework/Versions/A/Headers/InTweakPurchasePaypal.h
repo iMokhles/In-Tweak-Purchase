@@ -20,6 +20,7 @@ extern NSString *const PayPalEnvironmentNoNetwork;
 // get some keys to use while checking Parse Objects later
 extern NSString *const PF_C_CLASS_NAME; // Class Name
 extern NSString *const PF_C_IN_TWEAK_ID; // In Tweak ID (key)
+extern NSString *const PF_C_TRANS_SECRET_STRING; // Secret means Secert ( for security propose only )
 extern NSString *const PF_C_TRANS_UDID; // UDID (key)
 extern NSString *const PF_C_TRANS_SERIAL; // SERAIL (key)
 extern NSString *const PF_C_TRANS_ID; // Paypal Trans ID (key)
@@ -32,10 +33,15 @@ UIKIT_EXTERN NSString *const IAFailedProductPurchasedNotification;
 UIKIT_EXTERN NSString *const IAProductPurchasedInfoSavedNotification;
 UIKIT_EXTERN NSString *const IAProductPurchasedInfoFailedNotification;
 
+// Block to check transaction later ;)
+typedef void(^gotTransactionInfo)(NSDictionary *info, BOOL success);
+
 @interface InTweakPurchasePaypal : NSObject
 
 + (InTweakPurchasePaypal *)sharedInTweak;
 
+// checking transaction info
+- (void)checkTransactionInfo:(NSString *)inTweakID transInfo:(gotTransactionInfo)callBack;
 // setup your Parse IDs
 - (void)setParseApplicationID:(NSString *)appID clientKey:(NSString *)clientKey launchingWithOptions:(NSDictionary *)launchOptions;
 

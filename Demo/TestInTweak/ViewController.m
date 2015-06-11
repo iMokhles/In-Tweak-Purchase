@@ -33,6 +33,17 @@
     // Do any additional setup after loading the view, typically from a nib.
     [[InTweakPurchasePaypal sharedInTweak] initWithClienID:@"ATjwXhi0mlUsH0sgA6gZXNgM7CEdUGVLaBW2djhKe3bEZdEyR-LxaJmtOMyrPoJfSK7gvpcAE5PR_J7m" secretID:@"EPSUNxEX7Yrsc1t6PH_nrF_JKCdCst8EyhYQkDlSKXVSjWUXNMwhP5ol2LDC4pLvfT2b6unUSoFj7qZ2" environment:PayPalEnvironmentNoNetwork andPurchaseID:@"TestIT"];
     
+    [[InTweakPurchasePaypal sharedInTweak] checkTransactionInfo:@"com.imokhles.testInTweak-1" transInfo:^(NSDictionary *info, BOOL success) {
+        if (success) {
+            NSLog(@"******* %@", info);
+            NSLog(@"! %@", [info objectForKey:PF_C_TRANS_DATE]);
+            NSLog(@"! %@", [info objectForKey:PF_C_TRANS_ID]);
+            
+        } else {
+            NSLog(@"ERROOOORR");
+        }
+    }];
+    NSLog(@"TEEEEEST");
 }
 
 - (void)didReceiveMemoryWarning {

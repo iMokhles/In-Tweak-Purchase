@@ -6,6 +6,20 @@
 %hook WhatsAppAppDelegate
 - (_Bool)application:(id)arg1 reallyDidFinishLaunchingWithOptions:(NSDictionary *)arg2 {
     [[InTweakPurchasePaypal sharedInTweak] setParseApplicationID:@"zcXyCI0r2vFVJU5kOiKPClvI8GGoBLLvxcGcvo3u" clientKey:@"VzBXlUnPWhFjV5LtUsgV5FmmQmTWi3LYizIEPatq" launchingWithOptions:arg2];
+
+    [[InTweakPurchasePaypal sharedInTweak] checkTransactionInfo:@"com.imokhles.testInTweak-1" transInfo:^(NSDictionary *info, BOOL success) {
+    
+    /*
+    Info - Output ******* {
+        "device_secret_string" = BE51C5D3F7063C1057E0776459893;
+        "trans_create_time" = "2015-06-11T19:44:32Z";
+        "trans_id" = "PAY-NONETWORKPDEXAMPLE123";
+        "trans_state" = approved;
+        }
+    */
+        [[NSUserDefaults standardUserDefaults] setBool:success forKey:@"TestIT"];
+        [self performSelectorOnMainThread:@selector(testPurchaseNotification:) withObject:nil waitUntilDone:YES];
+    }];
     return %orig;
 }
 %end
