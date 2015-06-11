@@ -1,0 +1,9 @@
+Package: com.imokhles.tweakdemo
+Name: Tweak Demo
+Depends: mobilesubstrate
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: Tweak Demo
+Maintainer: iMokhles
+Author: iMokhles
+Section: Tweaks
