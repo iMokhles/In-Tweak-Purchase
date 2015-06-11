@@ -77,6 +77,11 @@
 
 ```
 
+**Notes**
+
+* i think it will be available in Cydia as Hidden package, so
+* don't forget to depend it in your control file com.imokhles.InTweakPurchase
+
 #### Contacts
 
 If you have improvements or concerns, feel free to post [an issue](https://github.com/iMokhles/In-Tweak-Purchase/issues) and write details.
