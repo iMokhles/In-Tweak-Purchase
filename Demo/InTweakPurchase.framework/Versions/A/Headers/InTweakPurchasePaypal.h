@@ -17,6 +17,15 @@ extern NSString *const PayPalEnvironmentSandbox;
 /// NoNetwork: Mock mode. Does not submit transactions to PayPal. Fakes successful responses. Useful for unit tests.
 extern NSString *const PayPalEnvironmentNoNetwork;
 
+// get some keys to use while checking Parse Objects later
+extern NSString *const PF_C_CLASS_NAME; // Class Name
+extern NSString *const PF_C_IN_TWEAK_ID; // In Tweak ID (key)
+extern NSString *const PF_C_TRANS_UDID; // UDID (key)
+extern NSString *const PF_C_TRANS_SERIAL; // SERAIL (key)
+extern NSString *const PF_C_TRANS_ID; // Paypal Trans ID (key)
+extern NSString *const PF_C_TRANS_STATE; // Paypal Trans STATE (key)
+extern NSString *const PF_C_TRANS_DATE; // Paypal Trans DATE (key) // helps u to create limited time feature ;) FORMAT : 2015-06-11T17:29:09Z
+
 UIKIT_EXTERN NSString *const IAProductPurchasedNotification;
 UIKIT_EXTERN NSString *const IAFailedProductPurchasedNotification;
 
