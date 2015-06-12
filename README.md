@@ -5,8 +5,10 @@
 ![License](https://img.shields.io/badge/License-GPL%20V3-blue.svg?style=flat)
 
 * in-tweak purchase system works with [Paypal-iOS-SDK](https://github.com/paypal/PayPal-iOS-SDK) and [ParseSDK](https://www.parse.com).
-* this doesn't use any Private API all of the APIs used are Public.
-* You can use it within any iOS application
+* ~~this doesn't use any Private API all of the APIs used are Public.~~ it uses Private API to get UDID and Serial, next step is to get an Unique identifier of each device, to secure your payments
+* ~~You can use it within any iOS application~~
+
+* Works fine with tweaks
 
 **Installation**
 
