@@ -1,0 +1,562 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		437AF3EF1B28871900D60480 /* Framework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 437AF3F01B28871900D60480 /* Build configuration list for PBXAggregateTarget "Framework" */;
+			buildPhases = (
+				437AF3F51B28873C00D60480 /* ShellScript */,
+			);
+			dependencies = (
+				437AF3F41B28872900D60480 /* PBXTargetDependency */,
+			);
+			name = Framework;
+			productName = Framework;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		437AF3A51B28836900D60480 /* InTweakPurchase.h in Headers */ = {isa = PBXBuildFile; fileRef = 437AF3A41B28836900D60480 /* InTweakPurchase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		437AF3AD1B28836900D60480 /* libInTweakPurchase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3A11B28836900D60480 /* libInTweakPurchase.a */; };
+		437AF3D31B28842E00D60480 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3BB1B28842E00D60480 /* Bolts.framework */; };
+		437AF3D41B28842E00D60480 /* FBMissingSymbols.m in Sources */ = {isa = PBXBuildFile; fileRef = 437AF3C41B28842E00D60480 /* FBMissingSymbols.m */; };
+		437AF3D51B28842E00D60480 /* InTweakPurchasePaypal.m in Sources */ = {isa = PBXBuildFile; fileRef = 437AF3C61B28842E00D60480 /* InTweakPurchasePaypal.m */; };
+		437AF3D61B28842E00D60480 /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3C71B28842E00D60480 /* libPayPalMobile.a */; };
+		437AF3D71B28842E00D60480 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3C81B28842E00D60480 /* Parse.framework */; };
+		437AF3D81B28842E00D60480 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3C91B28842E00D60480 /* ParseCrashReporting.framework */; };
+		437AF3D91B28842E00D60480 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3CA1B28842E00D60480 /* ParseFacebookUtils.framework */; };
+		437AF3DA1B28842E00D60480 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3CB1B28842E00D60480 /* ParseUI.framework */; };
+		437AF3DE1B28857700D60480 /* InTweakPurchasePaypal.h in Headers */ = {isa = PBXBuildFile; fileRef = 437AF3C51B28842E00D60480 /* InTweakPurchasePaypal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		437AF3AE1B28836900D60480 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 437AF3991B28836900D60480 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 437AF3A01B28836900D60480;
+			remoteInfo = InTweakPurchase;
+		};
+		437AF3F31B28872900D60480 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 437AF3991B28836900D60480 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 437AF3A01B28836900D60480;
+			remoteInfo = InTweakPurchase;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		437AF3A11B28836900D60480 /* libInTweakPurchase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libInTweakPurchase.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		437AF3A41B28836900D60480 /* InTweakPurchase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InTweakPurchase.h; sourceTree = "<group>"; };
+		437AF3AC1B28836900D60480 /* InTweakPurchaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InTweakPurchaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		437AF3B21B28836900D60480 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		437AF3BB1B28842E00D60480 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		437AF3BC1B28842E00D60480 /* CardIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIO.h; sourceTree = "<group>"; };
+		437AF3BD1B28842E00D60480 /* CardIOCreditCardInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOCreditCardInfo.h; sourceTree = "<group>"; };
+		437AF3BE1B28842E00D60480 /* CardIODetectionMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIODetectionMode.h; sourceTree = "<group>"; };
+		437AF3BF1B28842E00D60480 /* CardIOPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOPaymentViewController.h; sourceTree = "<group>"; };
+		437AF3C01B28842E00D60480 /* CardIOPaymentViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOPaymentViewControllerDelegate.h; sourceTree = "<group>"; };
+		437AF3C11B28842E00D60480 /* CardIOUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOUtilities.h; sourceTree = "<group>"; };
+		437AF3C21B28842E00D60480 /* CardIOView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOView.h; sourceTree = "<group>"; };
+		437AF3C31B28842E00D60480 /* CardIOViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOViewDelegate.h; sourceTree = "<group>"; };
+		437AF3C41B28842E00D60480 /* FBMissingSymbols.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMissingSymbols.m; sourceTree = "<group>"; };
+		437AF3C51B28842E00D60480 /* InTweakPurchasePaypal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InTweakPurchasePaypal.h; sourceTree = "<group>"; };
+		437AF3C61B28842E00D60480 /* InTweakPurchasePaypal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InTweakPurchasePaypal.m; sourceTree = "<group>"; };
+		437AF3C71B28842E00D60480 /* libPayPalMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPayPalMobile.a; sourceTree = "<group>"; };
+		437AF3C81B28842E00D60480 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		437AF3C91B28842E00D60480 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
+		437AF3CA1B28842E00D60480 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		437AF3CB1B28842E00D60480 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		437AF3CC1B28842E00D60480 /* PayPalConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalConfiguration.h; sourceTree = "<group>"; };
+		437AF3CD1B28842E00D60480 /* PayPalFuturePaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalFuturePaymentViewController.h; sourceTree = "<group>"; };
+		437AF3CE1B28842E00D60480 /* PayPalMobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalMobile.h; sourceTree = "<group>"; };
+		437AF3CF1B28842E00D60480 /* PayPalOAuthScopes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalOAuthScopes.h; sourceTree = "<group>"; };
+		437AF3D01B28842E00D60480 /* PayPalPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPayment.h; sourceTree = "<group>"; };
+		437AF3D11B28842E00D60480 /* PayPalPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPaymentViewController.h; sourceTree = "<group>"; };
+		437AF3D21B28842E00D60480 /* PayPalProfileSharingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalProfileSharingViewController.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		437AF39E1B28836900D60480 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				437AF3DA1B28842E00D60480 /* ParseUI.framework in Frameworks */,
+				437AF3D61B28842E00D60480 /* libPayPalMobile.a in Frameworks */,
+				437AF3D71B28842E00D60480 /* Parse.framework in Frameworks */,
+				437AF3D31B28842E00D60480 /* Bolts.framework in Frameworks */,
+				437AF3D91B28842E00D60480 /* ParseFacebookUtils.framework in Frameworks */,
+				437AF3D81B28842E00D60480 /* ParseCrashReporting.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		437AF3A91B28836900D60480 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				437AF3AD1B28836900D60480 /* libInTweakPurchase.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		437AF3981B28836900D60480 = {
+			isa = PBXGroup;
+			children = (
+				437AF3A31B28836900D60480 /* InTweakPurchase */,
+				437AF3B01B28836900D60480 /* InTweakPurchaseTests */,
+				437AF3A21B28836900D60480 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		437AF3A21B28836900D60480 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				437AF3A11B28836900D60480 /* libInTweakPurchase.a */,
+				437AF3AC1B28836900D60480 /* InTweakPurchaseTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		437AF3A31B28836900D60480 /* InTweakPurchase */ = {
+			isa = PBXGroup;
+			children = (
+				437AF3DB1B28844800D60480 /* Vendors */,
+				437AF3C51B28842E00D60480 /* InTweakPurchasePaypal.h */,
+				437AF3C61B28842E00D60480 /* InTweakPurchasePaypal.m */,
+				437AF3A41B28836900D60480 /* InTweakPurchase.h */,
+			);
+			path = InTweakPurchase;
+			sourceTree = "<group>";
+		};
+		437AF3B01B28836900D60480 /* InTweakPurchaseTests */ = {
+			isa = PBXGroup;
+			children = (
+				437AF3B11B28836900D60480 /* Supporting Files */,
+			);
+			path = InTweakPurchaseTests;
+			sourceTree = "<group>";
+		};
+		437AF3B11B28836900D60480 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				437AF3B21B28836900D60480 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		437AF3DB1B28844800D60480 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				437AF3BB1B28842E00D60480 /* Bolts.framework */,
+				437AF3BC1B28842E00D60480 /* CardIO.h */,
+				437AF3BD1B28842E00D60480 /* CardIOCreditCardInfo.h */,
+				437AF3BE1B28842E00D60480 /* CardIODetectionMode.h */,
+				437AF3BF1B28842E00D60480 /* CardIOPaymentViewController.h */,
+				437AF3C01B28842E00D60480 /* CardIOPaymentViewControllerDelegate.h */,
+				437AF3C11B28842E00D60480 /* CardIOUtilities.h */,
+				437AF3C21B28842E00D60480 /* CardIOView.h */,
+				437AF3C31B28842E00D60480 /* CardIOViewDelegate.h */,
+				437AF3C41B28842E00D60480 /* FBMissingSymbols.m */,
+				437AF3C71B28842E00D60480 /* libPayPalMobile.a */,
+				437AF3C81B28842E00D60480 /* Parse.framework */,
+				437AF3C91B28842E00D60480 /* ParseCrashReporting.framework */,
+				437AF3CA1B28842E00D60480 /* ParseFacebookUtils.framework */,
+				437AF3CB1B28842E00D60480 /* ParseUI.framework */,
+				437AF3CC1B28842E00D60480 /* PayPalConfiguration.h */,
+				437AF3CD1B28842E00D60480 /* PayPalFuturePaymentViewController.h */,
+				437AF3CE1B28842E00D60480 /* PayPalMobile.h */,
+				437AF3CF1B28842E00D60480 /* PayPalOAuthScopes.h */,
+				437AF3D01B28842E00D60480 /* PayPalPayment.h */,
+				437AF3D11B28842E00D60480 /* PayPalPaymentViewController.h */,
+				437AF3D21B28842E00D60480 /* PayPalProfileSharingViewController.h */,
+			);
+			name = Vendors;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		437AF3DD1B28854900D60480 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				437AF3A51B28836900D60480 /* InTweakPurchase.h in Headers */,
+				437AF3DE1B28857700D60480 /* InTweakPurchasePaypal.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		437AF3A01B28836900D60480 /* InTweakPurchase */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 437AF3B51B28836900D60480 /* Build configuration list for PBXNativeTarget "InTweakPurchase" */;
+			buildPhases = (
+				437AF39D1B28836900D60480 /* Sources */,
+				437AF39E1B28836900D60480 /* Frameworks */,
+				437AF3DD1B28854900D60480 /* Headers */,
+				437AF3EE1B28867100D60480 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InTweakPurchase;
+			productName = InTweakPurchase;
+			productReference = 437AF3A11B28836900D60480 /* libInTweakPurchase.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		437AF3AB1B28836900D60480 /* InTweakPurchaseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 437AF3B81B28836900D60480 /* Build configuration list for PBXNativeTarget "InTweakPurchaseTests" */;
+			buildPhases = (
+				437AF3A81B28836900D60480 /* Sources */,
+				437AF3A91B28836900D60480 /* Frameworks */,
+				437AF3AA1B28836900D60480 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				437AF3AF1B28836900D60480 /* PBXTargetDependency */,
+			);
+			name = InTweakPurchaseTests;
+			productName = InTweakPurchaseTests;
+			productReference = 437AF3AC1B28836900D60480 /* InTweakPurchaseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		437AF3991B28836900D60480 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Mokhlas Hussein";
+				TargetAttributes = {
+					437AF3A01B28836900D60480 = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					437AF3AB1B28836900D60480 = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					437AF3EF1B28871900D60480 = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+				};
+			};
+			buildConfigurationList = 437AF39C1B28836900D60480 /* Build configuration list for PBXProject "InTweakPurchase" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 437AF3981B28836900D60480;
+			productRefGroup = 437AF3A21B28836900D60480 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				437AF3A01B28836900D60480 /* InTweakPurchase */,
+				437AF3AB1B28836900D60480 /* InTweakPurchaseTests */,
+				437AF3EF1B28871900D60480 /* Framework */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		437AF3AA1B28836900D60480 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		437AF3EE1B28867100D60480 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"";
+		};
+		437AF3F51B28873C00D60480 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\nxcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nxcrun lipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n\n# Copy the binary to the other architecture folder to have a complete framework in both.\ncp -a \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		437AF39D1B28836900D60480 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				437AF3D41B28842E00D60480 /* FBMissingSymbols.m in Sources */,
+				437AF3D51B28842E00D60480 /* InTweakPurchasePaypal.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		437AF3A81B28836900D60480 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		437AF3AF1B28836900D60480 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 437AF3A01B28836900D60480 /* InTweakPurchase */;
+			targetProxy = 437AF3AE1B28836900D60480 /* PBXContainerItemProxy */;
+		};
+		437AF3F41B28872900D60480 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 437AF3A01B28836900D60480 /* InTweakPurchase */;
+			targetProxy = 437AF3F31B28872900D60480 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		437AF3B31B28836900D60480 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					armv7s,
+				);
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)/Headers";
+				SDKROOT = iphoneos;
+				STRIP_STYLE = "non-global";
+			};
+			name = Debug;
+		};
+		437AF3B41B28836900D60480 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					armv7s,
+				);
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)/Headers";
+				SDKROOT = iphoneos;
+				STRIP_STYLE = "non-global";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		437AF3B61B28836900D60480 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/InTweakPurchase",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/InTweakPurchase",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		437AF3B71B28836900D60480 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/InTweakPurchase",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/InTweakPurchase",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		437AF3B91B28836900D60480 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = InTweakPurchaseTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		437AF3BA1B28836900D60480 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = InTweakPurchaseTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		437AF3F11B28871900D60480 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		437AF3F21B28871900D60480 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		437AF39C1B28836900D60480 /* Build configuration list for PBXProject "InTweakPurchase" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				437AF3B31B28836900D60480 /* Debug */,
+				437AF3B41B28836900D60480 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		437AF3B51B28836900D60480 /* Build configuration list for PBXNativeTarget "InTweakPurchase" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				437AF3B61B28836900D60480 /* Debug */,
+				437AF3B71B28836900D60480 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		437AF3B81B28836900D60480 /* Build configuration list for PBXNativeTarget "InTweakPurchaseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				437AF3B91B28836900D60480 /* Debug */,
+				437AF3BA1B28836900D60480 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		437AF3F01B28871900D60480 /* Build configuration list for PBXAggregateTarget "Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				437AF3F11B28871900D60480 /* Debug */,
+				437AF3F21B28871900D60480 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 437AF3991B28836900D60480 /* Project object */;
+}
