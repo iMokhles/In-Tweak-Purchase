@@ -10,6 +10,10 @@
 
 * Works fine with tweaks
 
+**Tweak Demo**
+
+![DemoVideo](https://raw.github.com/iMokhles/In-Tweak-Purchase/master/screenshots/DemoVideo.gif)
+
 **Installation**
 
 **Link against those frameworks:**
