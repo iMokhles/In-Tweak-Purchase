@@ -12,7 +12,7 @@
 
 **Tweak Demo**
 
-![DemoVideo](https://raw.github.com/iMokhles/In-Tweak-Purchase/master/screenshots/DemoVideo.gif)
+![DemoVideo](https://github.com/iMokhles/In-Tweak-Purchase/raw/master/screenshots/DemoVideo.gif)
 
 **Installation**
 
