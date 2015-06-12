@@ -17,8 +17,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="goG-mP-cCK">
-                                <rect key="frame" x="277" y="285" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <rect key="frame" x="285" y="285" width="30" height="30"/>
+                                <state key="normal" title="Buy">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -35,11 +35,22 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DeD-RL-UCC">
+                                <rect key="frame" x="274" y="323" width="53" height="30"/>
+                                <state key="normal" title="Restore">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="restorePurchases:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ksz-T4-vcg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="goG-mP-cCK" secondAttribute="centerY" id="CnU-US-jpQ"/>
                             <constraint firstAttribute="centerX" secondItem="VH9-lp-DAF" secondAttribute="centerX" id="DEW-pZ-HIF"/>
+                            <constraint firstAttribute="centerX" secondItem="DeD-RL-UCC" secondAttribute="centerX" id="N7g-RY-Hsq"/>
+                            <constraint firstAttribute="centerY" secondItem="DeD-RL-UCC" secondAttribute="centerY" constant="-38" id="QLZ-nU-p7l"/>
                             <constraint firstAttribute="centerY" secondItem="VH9-lp-DAF" secondAttribute="centerY" constant="77.5" id="dct-zg-X6n"/>
                             <constraint firstAttribute="centerX" secondItem="goG-mP-cCK" secondAttribute="centerX" id="kFY-p1-25D"/>
                         </constraints>

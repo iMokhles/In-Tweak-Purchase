@@ -35,7 +35,7 @@
 // you can use launchingWithOptions if u called it inside AppDelegate to track your device
 // if you caleld it from another place you can put launchingWithOptions as nil
 
-[[InTweakPurchasePaypal sharedInTweak] setParseApplicationID:@"PARSE_APP_ID" clientKey:@"PARSE_CLIENT_ID" launchingWithOptions:nil];
+[[InTweakPurchasePaypal sharedInTweak] setParseApplicationID:@"PARSE_APP_ID" clientKey:@"PARSE_CLIENT_ID" className:@"CLASS_NAME" devicesLimit:2 launchingWithOptions:nil];
 
 // Configure your Paypal Account
 
@@ -73,6 +73,19 @@
 // if there are an error u will find it easily
 // ex: 2015-06-12 12:41:10.179 TestInTweak[26062:5042354] [InTweakPurchase] ERROR: The Internet connection appears to be offline.
 
+
+// Restoring purchase 
+// to restore purchases just ask the user about his Paypal Transacion ID
+// then the framework will check everything for u
+// it it will return NO, if the user reached the devices limit ( with a notification )
+[[InTweakPurchasePaypal sharedInTweak] restorePurchasesForTransaction:@"PAYPAL_TRANS_ID" transInfo:^(BOOL success) {
+        if (success) {
+            NSLog(@"Purchased Already");
+        } else {
+            NSLog(@"Ops somthing goes wrong with your TRANSACTION ID");
+        }
+}];
+
 ```
 **Get Payments Notifications**
 
@@ -86,6 +99,8 @@
 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testPurchaseNotification:) name:IAProductPurchasedInfoSavedNotification object:nil];
 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testPurchaseNotification:) name:IAProductPurchasedInfoFailedNotification object:nil];
 
+// Gettings Devices limit reached notification
+[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testPurchaseNotification:) name:IADevicesLimitFailedNotification object:nil];
 
 - (void)testPurchaseNotification:(NSNotification *) notification {
     if ([notification.name isEqualToString:IAProductPurchasedNotification]) {
@@ -96,6 +111,8 @@
         //Purchased Info Saved Done
     } else if ([notification.name isEqualToString:IAProductPurchasedInfoFailedNotification]) {
         //Purchased Info Failed To Save
+    } else if ([notification.name isEqualToString:IADevicesLimitFailedNotification]) {
+        // Reached devices limit
     }
 }
 

@@ -21,7 +21,7 @@
         if (success) {
             NSLog(@"******* %@", info);
         } else {
-            NSLog(@"ERROOOORR");
+            NSLog(@"ERROOOORR 23123");
         }
     }];
     
@@ -62,5 +62,16 @@
     
     [[InTweakPurchasePaypal sharedInTweak] presentPaypalViewControllerFromViewController:self WithItemName:@"Test Item  1" inTweakID:@"com.imokhles.testInTweak-1" Description:@"Tis is a test description" Quantity:1 Price:@"1.00" Currency:@"USD" SKU:@"876589"];
     
+}
+
+- (IBAction)restorePurchases:(id)sender {
+    
+    [[InTweakPurchasePaypal sharedInTweak] restorePurchasesForTransaction:@"NONETWORKPAYIDEXAMPLE123" transInfo:^(BOOL success) {
+        if (success) {
+            NSLog(@"******* ");
+        } else {
+            NSLog(@"ERROOOORR");
+        }
+    }];
 }
 @end
