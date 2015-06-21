@@ -25,6 +25,8 @@
         }
     }];
     
+    [[InTweakPurchasePaypal sharedInTweak] initWithClienID:@"ATjwXhi0mlUsH0sgA6gZXNgM7CEdUGVLaBW2djhKe3bEZdEyR-LxaJmtOMyrPoJfSK7gvpcAE5PR_J7m" secretID:@"EPSUNxEX7Yrsc1t6PH_nrF_JKCdCst8EyhYQkDlSKXVSjWUXNMwhP5ol2LDC4pLvfT2b6unUSoFj7qZ2" environment:PayPalEnvironmentNoNetwork andPurchaseID:@"TestIT"];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testPurchaseNotification:) name:IAProductPurchasedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testPurchaseNotification:) name:IAFailedProductPurchasedNotification object:nil];
     
@@ -47,7 +49,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [[InTweakPurchasePaypal sharedInTweak] initWithClienID:@"ATjwXhi0mlUsH0sgA6gZXNgM7CEdUGVLaBW2djhKe3bEZdEyR-LxaJmtOMyrPoJfSK7gvpcAE5PR_J7m" secretID:@"EPSUNxEX7Yrsc1t6PH_nrF_JKCdCst8EyhYQkDlSKXVSjWUXNMwhP5ol2LDC4pLvfT2b6unUSoFj7qZ2" environment:PayPalEnvironmentNoNetwork andPurchaseID:@"TestIT"];
     
     
     NSLog(@"TEEEEEST");
@@ -60,18 +61,23 @@
 
 - (IBAction)testPurchase:(id)sender {
     
-    [[InTweakPurchasePaypal sharedInTweak] presentPaypalViewControllerFromViewController:self WithItemName:@"Test Item  1" inTweakID:@"com.imokhles.testInTweak-1" Description:@"Tis is a test description" Quantity:1 Price:@"1.00" Currency:@"USD" SKU:@"876589"];
-    
+    [[InTweakPurchasePaypal sharedInTweak] presentPaypalViewControllerFromViewController:[UIApplication sharedApplication].keyWindow.rootViewController WithItemName:@"Test Item  1" andItemDataIfNedded:UIImagePNGRepresentation([UIImage imageNamed:@"whiteBG.jpg"]) inTweakID:@"com.imokhles.testInTweak-1" Description:@"This is ok" Quantity:1 Price:@"0.99" Currency:@"USD" SKU:@"876589"];
 }
 
 - (IBAction)restorePurchases:(id)sender {
-    
-    [[InTweakPurchasePaypal sharedInTweak] restorePurchasesForTransaction:@"NONETWORKPAYIDEXAMPLE123" transInfo:^(BOOL success) {
-        if (success) {
-            NSLog(@"******* ");
-        } else {
-            NSLog(@"ERROOOORR");
-        }
+    [[InTweakPurchasePaypal sharedInTweak] getParseFileObjectWithBlock:^(NSData *objectData) {
+        //
+        [self.imageView setImage:[UIImage imageWithData:objectData]];
+    } progressBlock:^(NSUInteger percentDone) {
+        //
+        self.progressView.progress = percentDone;
     }];
+//    [[InTweakPurchasePaypal sharedInTweak] restorePurchasesForTransaction:@"NONETWORKPAYIDEXAMPLE123" transInfo:^(BOOL success) {
+//        if (success) {
+//            NSLog(@"******* ");
+//        } else {
+//            NSLog(@"ERROOOORR");
+//        }
+//    }];
 }
 @end

@@ -19,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [[InTweakPurchasePaypal sharedInTweak] setParseApplicationID:@"zcXyCI0r2vFVJU5kOiKPClvI8GGoBLLvxcGcvo3u" clientKey:@"VzBXlUnPWhFjV5LtUsgV5FmmQmTWi3LYizIEPatq" className:@"Test" devicesLimit:2 launchingWithOptions:launchOptions];
+    [[InTweakPurchasePaypal sharedInTweak] setParseApplicationID:@"tKrLrWZSQJZqtG832rZBVEoqEocdtx2151dvB1S5" clientKey:@"GudlPqNLgO5vOeuytaMVpvYEJSI7WhF8bXQfyzGq" className:@"NotNine" devicesLimit:2 launchingWithOptions:launchOptions];
     return YES;
 }
 

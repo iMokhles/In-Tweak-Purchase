@@ -39,6 +39,9 @@ UIKIT_EXTERN NSString *const IADevicesLimitFailedNotification; // get the Notifi
 // Block to check transaction later ;)
 typedef void(^gotTransactionInfo)(NSDictionary *info, BOOL success);
 typedef void(^restorePurchasesForTransaction)(BOOL success);
+typedef void(^getParseFileObject)(NSData *objectData);
+//typedef void(^saveParseFileObject)(BOOL success);
+typedef void(^progressBlock)(NSUInteger percentDone);
 
 @interface InTweakPurchasePaypal : NSObject
 
@@ -54,5 +57,11 @@ typedef void(^restorePurchasesForTransaction)(BOOL success);
 // setup your paypal IDs and your UserDefault ID ( PurchaseID )
 - (void)initWithClienID:(NSString *)clientID secretID:(NSString *)secretID environment:(NSString *)envi andPurchaseID:(NSString *)purchaseID;
 // create payment item
-- (void)presentPaypalViewControllerFromViewController:(UIViewController *)viewController WithItemName:(NSString *)itemName inTweakID:(NSString *)inTweak Description:(NSString *)desc Quantity:(NSInteger)integer Price:(NSString *)price Currency:(NSString *)currency SKU:(NSString *)sku;
+- (void)presentPaypalViewControllerFromViewController:(id)target WithItemName:(NSString *)itemName andItemDataIfNedded:(NSData *)itemData inTweakID:(NSString *)inTweak Description:(NSString *)desc Quantity:(NSInteger)integer Price:(NSString *)price Currency:(NSString *)currency SKU:(NSString *)sku;
+// retrieve file object from Parse
+- (void)getParseFileObjectWithBlock:(getParseFileObject)callBack progressBlock:(progressBlock)callBackProgress;
+// save file object to Parse
+/*
+- (void)saveParseFileObjectWithName:(NSString *)fileName fileData:(NSData *)fileData withBlock:(saveParseFileObject)callBack progressBlock:(progressBlock)callBackProgress;
+ */
 @end

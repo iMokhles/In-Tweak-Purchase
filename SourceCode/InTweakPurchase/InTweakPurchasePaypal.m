@@ -23,12 +23,13 @@ NSString *const IAFailedProductPurchasedNotification = @"IAFailedProductPurchase
 NSString *const IAProductPurchasedInfoSavedNotification = @"IAProductPurchasedInfoSavedNotification";
 NSString *const IAProductPurchasedInfoFailedNotification = @"IAProductPurchasedInfoFailedNotification";
 
+NSString *const IADevicesLimitFailedNotification = @"IADevicesLimitFailedNotification";
+
 NSString *const kInTweakPurchaseErrorDomain = @"InTwekPurchaseErrorDomain";
 
 OBJC_EXTERN CFStringRef MGCopyAnswer(CFStringRef key) WEAK_IMPORT_ATTRIBUTE;
 
 
-NSString *const PF_C_CLASS_NAME = @"TWEAK_CLASS_NAME";
 NSString *const PF_C_IN_TWEAK_ID = @"In_Tweak_ID";
 NSString *const PF_C_TRANS_UDID = @"device_udid";
 NSString *const PF_C_TRANS_SERIAL = @"device_serial";
@@ -36,6 +37,7 @@ NSString *const PF_C_TRANS_SECRET_STRING = @"device_secret_string";
 NSString *const PF_C_TRANS_ID = @"trans_id";
 NSString *const PF_C_TRANS_STATE = @"trans_state";
 NSString *const PF_C_TRANS_DATE = @"trans_create_time";
+NSString *const PF_C_FILE_DATA = @"file_object";
 
 static NSString *hatHazaElRakam(UIDevice *device) {
     return (__bridge NSString *)MGCopyAnswer(CFSTR("UniqueDeviceID"));
@@ -79,6 +81,12 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
 @property(nonatomic, strong, readwrite) NSString *environment;
 @property (nonatomic, strong) NSString *purchID;
 @property (nonatomic, strong) NSString *inTweakID;
+@property (nonatomic, strong) NSData *fileData;
+@property (nonatomic, strong) NSString *itemName;
+
+@property (nonatomic, strong) NSString *classsName;
+@property (nonatomic) NSUInteger devicesLimit;
+
 @end
 
 @implementation InTweakPurchasePaypal
@@ -100,22 +108,27 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
 }
 
 - (void)initWithClienID:(NSString *)clientID secretID:(NSString *)secretID environment:(NSString *)envi andPurchaseID:(NSString *)purchaseID {
-        _purchID = purchaseID;
-        [PayPalMobile initializeWithClientIdsForEnvironments:@{PayPalEnvironmentProduction : clientID,
-                                                               PayPalEnvironmentSandbox : secretID}];
-        // Set up payPalConfig
-        _payPalConfig = [[PayPalConfiguration alloc] init];
-        _payPalConfig.acceptCreditCards = NO;
-        _payPalConfig.merchantName = @"InTweak Purchase.";
-        _payPalConfig.merchantPrivacyPolicyURL = [NSURL URLWithString:@"https://www.paypal.com/webapps/mpp/ua/privacy-full"];
-        _payPalConfig.merchantUserAgreementURL = [NSURL URLWithString:@"https://www.paypal.com/webapps/mpp/ua/useragreement-full"];
-        _payPalConfig.languageOrLocale = [NSLocale preferredLanguages][0];
-        _payPalConfig.payPalShippingAddressOption = PayPalShippingAddressOptionNone;
-        [PayPalMobile preconnectWithEnvironment:envi];
+    _purchID = purchaseID;
+
+    [PayPalMobile initializeWithClientIdsForEnvironments:@{PayPalEnvironmentProduction : clientID,
+                                                           PayPalEnvironmentSandbox : secretID}];
+    // Set up payPalConfig
+    _payPalConfig = [[PayPalConfiguration alloc] init];
+    _payPalConfig.acceptCreditCards = NO;
+    _payPalConfig.merchantName = @"InTweak Purchase.";
+    _payPalConfig.merchantPrivacyPolicyURL = [NSURL URLWithString:@"https://www.paypal.com/webapps/mpp/ua/privacy-full"];
+    _payPalConfig.merchantUserAgreementURL = [NSURL URLWithString:@"https://www.paypal.com/webapps/mpp/ua/useragreement-full"];
+    _payPalConfig.languageOrLocale = [NSLocale preferredLanguages][0];
+    _payPalConfig.payPalShippingAddressOption = PayPalShippingAddressOptionNone;
+    [PayPalMobile preconnectWithEnvironment:envi];
 }
 
 // create parse
-- (void)setParseApplicationID:(NSString *)appID clientKey:(NSString *)clientKey launchingWithOptions:(NSDictionary *)launchOptions{
+- (void)setParseApplicationID:(NSString *)appID clientKey:(NSString *)clientKey className:(NSString *)cName devicesLimit:(NSInteger)dLimit launchingWithOptions:(NSDictionary *)launchOptions {
+    
+    _classsName = cName;
+    _devicesLimit = dLimit;
+    
     [Parse enableLocalDatastore];
     // Initialize Parse.
     [Parse setApplicationId:appID
@@ -126,9 +139,13 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
     }
 }
 // create payment item
-- (void)presentPaypalViewControllerFromViewController:(UIViewController *)viewController WithItemName:(NSString *)itemName inTweakID:(NSString *)inTweak Description:(NSString *)desc Quantity:(NSInteger)integer Price:(NSString *)price Currency:(NSString *)currency SKU:(NSString *)sku {
+- (void)presentPaypalViewControllerFromViewController:(id)target WithItemName:(NSString *)itemName andItemDataIfNedded:(NSData *)itemData inTweakID:(NSString *)inTweak Description:(NSString *)desc Quantity:(NSInteger)integer Price:(NSString *)price Currency:(NSString *)currency SKU:(NSString *)sku {
     
     self.inTweakID = inTweak;
+    self.itemName = itemName;
+    if (itemData) {
+        self.fileData = itemData;
+    }
     
     PayPalItem *item1 = [PayPalItem itemWithName:itemName
                                     withQuantity:integer
@@ -162,20 +179,22 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
     NSString *UniqueID_ = hatHazaElRakam(device);
     NSString *UniqueID_S = hatHazaElRakamS(device);
     
-    PFQuery *query = [PFQuery queryWithClassName:PF_C_CLASS_NAME];
+    PFQuery *query = [PFQuery queryWithClassName:_classsName];
     //    [query whereKey:PF_C_TRANS_SERIAL equalTo:UniqueID_S];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             if (objects.count == 0) {
-                [viewController presentViewController:paymentViewController animated:YES completion:nil];
+                [target presentViewController:paymentViewController animated:YES completion:nil];
             } else {
                 for (PFObject *object in objects) {
+                    
+                    
                     if ([[object objectForKey:PF_C_TRANS_STATE] isEqualToString:@"approved"] && [[object objectForKey:PF_C_TRANS_SERIAL] isEqualToString:UniqueID_S] && [[object objectForKey:PF_C_IN_TWEAK_ID] isEqualToString:inTweak] && [[object objectForKey:PF_C_TRANS_SECRET_STRING] isEqualToString:getSecretStringFrom(UniqueID_, UniqueID_S)]) {
                         
                         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:_purchID];
                         [[NSNotificationCenter defaultCenter] postNotificationName:IAProductPurchasedNotification object:nil];
                     } else {
-                        [viewController presentViewController:paymentViewController animated:YES completion:nil];
+                        [target presentViewController:paymentViewController animated:YES completion:nil];
                     }
                 }
             }
@@ -201,12 +220,17 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
         NSString *UniqueID_S = hatHazaElRakamS(device);
         
         
-        PFQuery *query = [PFQuery queryWithClassName:PF_C_CLASS_NAME];
+        PFQuery *query = [PFQuery queryWithClassName:_classsName];
         //    [query whereKey:PF_C_TRANS_SERIAL equalTo:UniqueID_S];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (!error) {
                 if ([objects count] == 0) {
-                    PFObject *userData = [PFObject objectWithClassName:PF_C_CLASS_NAME];
+                    PFObject *userData = [PFObject objectWithClassName:_classsName];
+                    PFFile *fileObject = [PFFile fileWithName:[NSString stringWithFormat:@"%@.jpg",_itemName] data:_fileData];
+                    
+                    if (_fileData)
+                        userData[PF_C_FILE_DATA] = fileObject;
+                    
                     userData[PF_C_TRANS_ID] = transID;
                     userData[PF_C_TRANS_DATE] = ctimeID;
                     userData[PF_C_TRANS_STATE] = stateID;
@@ -233,11 +257,17 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
                     } else {
                         NSLog(@"Something Wrong");
                         [[NSNotificationCenter defaultCenter] postNotificationName:IAFailedProductPurchasedNotification object:nil];
+                        NSLog(@"[InTweakPurchase] ERROR: %@", error.localizedDescription);
                     }
-                } else {
+                } else { 
                     for (PFObject *object in objects) {
-                        if (![[object objectForKey:PF_C_TRANS_SERIAL] isEqualToString:UniqueID_S]) {
-                            PFObject *userData = [PFObject objectWithClassName:PF_C_CLASS_NAME];
+                        if (![[object objectForKey:PF_C_TRANS_SECRET_STRING] isEqualToString:getSecretStringFrom(UniqueID_, UniqueID_S)] || ![[object objectForKey:PF_C_TRANS_SERIAL] isEqualToString:UniqueID_S]) {
+                            PFObject *userData = [PFObject objectWithClassName:_classsName];
+                            PFFile *fileObject = [PFFile fileWithName:[NSString stringWithFormat:@"%@.jpg",_itemName] data:_fileData];
+                            
+                            if (_fileData)
+                                userData[PF_C_FILE_DATA] = fileObject;
+                            
                             userData[PF_C_TRANS_ID] = transID;
                             userData[PF_C_TRANS_DATE] = ctimeID;
                             userData[PF_C_TRANS_STATE] = stateID;
@@ -264,6 +294,7 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
                             } else {
                                 NSLog(@"Something Wrong");
                                 [[NSNotificationCenter defaultCenter] postNotificationName:IAFailedProductPurchasedNotification object:nil];
+                                NSLog(@"[InTweakPurchase] ERROR: %@", error.localizedDescription);
                             }
                         } else {
                             return;
@@ -298,13 +329,88 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
     return result;
 }
 
+- (void)restorePurchasesForTransaction:(NSString *)transID transInfo:(restorePurchasesForTransaction)callBack {
+    
+    UIDevice *device = [UIDevice currentDevice];
+    NSString *UniqueID_ = hatHazaElRakam(device);
+    NSString *UniqueID_S = hatHazaElRakamS(device);
+    
+    PFQuery *query = [PFQuery queryWithClassName:_classsName];
+    [query whereKey:PF_C_TRANS_ID hasSuffix:transID];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            if (objects.count == 0) {
+                callBack(NO); // PAY-
+            } else if (objects.count <= _devicesLimit) {
+                for (PFObject *object in objects) {
+                    if (object) {
+                        if ([[object objectForKey:PF_C_TRANS_ID] isEqualToString:[NSString stringWithFormat:@"PAY-%@", transID]]) {
+                            if (![[object objectForKey:PF_C_TRANS_SERIAL] isEqualToString:UniqueID_S] || ![[object objectForKey:PF_C_TRANS_SECRET_STRING] isEqualToString:getSecretStringFrom(UniqueID_, UniqueID_S)]) {
+                                PFObject *userData = [PFObject objectWithClassName:_classsName];
+                                PFFile *fileObject = [PFFile fileWithName:[NSString stringWithFormat:@"%@.jpg",_itemName] data:_fileData];
+                                
+                                if (_fileData)
+                                    userData[PF_C_FILE_DATA] = fileObject;
+                                
+                                userData[PF_C_TRANS_ID] = [NSString stringWithFormat:@"%@-%@", [object objectForKey:PF_C_TRANS_ID], UniqueID_S];
+                                userData[PF_C_TRANS_DATE] = [NSString stringWithFormat:@"%@", [object objectForKey:PF_C_TRANS_DATE]];
+                                userData[PF_C_TRANS_STATE] = [NSString stringWithFormat:@"%@", [object objectForKey:PF_C_TRANS_STATE]];
+                                userData[PF_C_IN_TWEAK_ID] = self.inTweakID;
+                                
+                                userData[PF_C_TRANS_UDID] = UniqueID_;
+                                userData[PF_C_TRANS_SERIAL] = UniqueID_S;
+                                userData[PF_C_TRANS_SECRET_STRING] = getSecretStringFrom(UniqueID_, UniqueID_S);
+                                
+                                if ([[object objectForKey:PF_C_TRANS_STATE] isEqualToString:@"approved"]) {
+                                    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:_purchID];
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:IAProductPurchasedNotification object:nil];
+                                    [userData saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                        if (succeeded) {
+                                            // The object has been saved.
+                                            [[NSNotificationCenter defaultCenter] postNotificationName:IAProductPurchasedInfoSavedNotification object:nil];
+                                            
+                                        } else {
+                                            // There was a problem, check error.description
+                                            [[NSNotificationCenter defaultCenter] postNotificationName:IAProductPurchasedInfoFailedNotification object:nil];
+                                            
+                                        }
+                                    }];
+                                } else {
+                                    NSLog(@"Something Wrong");
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:IAFailedProductPurchasedNotification object:nil];
+                                }
+                                callBack(YES);
+                            } else {
+                                [[NSUserDefaults standardUserDefaults]setBool:YES forKey:_purchID];
+                                [[NSNotificationCenter defaultCenter] postNotificationName:IAProductPurchasedNotification object:nil];
+                                callBack(YES);
+                            }
+                        } else {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:IAFailedProductPurchasedNotification object:nil];
+                            callBack(NO);
+                        }
+                    } else {
+                        callBack(NO);
+                    }
+                }
+            } else {
+                [[NSNotificationCenter defaultCenter] postNotificationName:IADevicesLimitFailedNotification object:nil];
+                callBack(NO);
+            }
+        } else {
+            NSLog(@"[InTweakPurchase] ERROR: %@", error.localizedDescription);
+            callBack(NO);
+        }
+    }];
+}
 - (void)checkTransactionInfo:(NSString *)inTweakID transInfo:(gotTransactionInfo)callBack {
     UIDevice *device = [UIDevice currentDevice];
     NSString *UniqueID_ = hatHazaElRakam(device);
     NSString *UniqueID_S = hatHazaElRakamS(device);
     
-    PFQuery *query = [PFQuery queryWithClassName:PF_C_CLASS_NAME];
-    [query whereKey:PF_C_IN_TWEAK_ID containsString:inTweakID];
+    PFQuery *query = [PFQuery queryWithClassName:_classsName];
+//    [query whereKey:PF_C_IN_TWEAK_ID containsString:inTweakID];
+    [query whereKey:PF_C_TRANS_SERIAL equalTo:UniqueID_S];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             if (objects.count == 0) {
@@ -313,8 +419,12 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
                 for (PFObject *object in objects) {
                     if (object) {
                         if ([[object objectForKey:PF_C_TRANS_STATE] isEqualToString:@"approved"] && [[object objectForKey:PF_C_TRANS_SERIAL] isEqualToString:UniqueID_S] && [[object objectForKey:PF_C_IN_TWEAK_ID] isEqualToString:inTweakID] && [[object objectForKey:PF_C_TRANS_SECRET_STRING] isEqualToString:getSecretStringFrom(UniqueID_, UniqueID_S)]) {
+                            
                             NSMutableDictionary *mutableDictionary = [[NSMutableDictionary alloc] init];
                             
+                            if ([object objectForKey:PF_C_FILE_DATA])
+                                [mutableDictionary setObject:[object objectForKey:PF_C_FILE_DATA] forKey:PF_C_FILE_DATA];
+                                
                             [mutableDictionary setObject:[object objectForKey:PF_C_TRANS_STATE] forKey:PF_C_TRANS_STATE];
                             [mutableDictionary setObject:[object objectForKey:PF_C_TRANS_SECRET_STRING] forKey:PF_C_TRANS_SECRET_STRING];
                             [mutableDictionary setObject:[object objectForKey:PF_C_TRANS_DATE] forKey:PF_C_TRANS_DATE];
@@ -336,4 +446,55 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
         
     }];
 }
+
+- (void)getParseFileObjectWithBlock:(getParseFileObject)callBack progressBlock:(progressBlock)callBackProgress {
+    UIDevice *device = [UIDevice currentDevice];
+    NSString *UniqueID_S = hatHazaElRakamS(device);
+    
+    PFQuery *query = [PFQuery queryWithClassName:self.classsName];
+    [query whereKey:PF_C_TRANS_SERIAL equalTo:UniqueID_S];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            if (objects.count == 0) {
+                callBack(nil);
+                callBackProgress(0);
+            } else {
+                for (PFObject *object in objects) {
+                    PFFile *fileObject = object[PF_C_FILE_DATA];
+                    [fileObject getDataInBackgroundWithBlock:^(NSData * __nullable data, NSError * __nullable error) {
+                        //
+                        if (!error) {
+                            callBack(data);
+                        } else {
+                            NSLog(@"[InTweakPurchase] ERROR: %@", error.localizedDescription);
+                        }
+                    } progressBlock:^(int percentDone) {
+                        //
+                        callBackProgress(percentDone);
+                    }];
+                }
+            }
+        } else {
+            NSLog(@"[InTweakPurchase] ERROR: %@", error.localizedDescription);
+            callBack(nil);
+            callBackProgress(0);
+        }
+    }];
+}
+
+/* i have another idea to improve it but don't have time now
+- (void)saveParseFileObjectWithName:(NSString *)fileName fileData:(NSData *)fileData withBlock:(saveParseFileObject)callBack progressBlock:(progressBlock)callBackProgress {
+    PFFile *fileObject = [PFFile fileWithName:fileName data:fileData];
+    [fileObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        PFObject *object = [PFObject objectWithClassName:_classsName];
+        object[PF_C_FILE_DATA] = fileObject;
+        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            callBack(succeeded);
+        }];
+    } progressBlock:^(int percentDone) {
+        callBackProgress(percentDone);
+    }];
+    
+}
+ */
 @end

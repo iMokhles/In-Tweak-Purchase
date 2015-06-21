@@ -46,12 +46,13 @@
 // Configure your purchase item
 
 // ex: ITEM_NAME = @"Remove Ads"
+// ex: ITEM DATA = an zip file contents dylib, zip-file, Image, music to be uploaded (if the purchase done) (just accept one file till now)
 // ex: ITEM_ID = @"com.imokhles.testtweak-removeads"
 // ex: ITEM_DESCRIPTION = @"purchase this item to remove ads"
 // ex: PRICE = @"0.99"
 // ex: ITEM_SKU = @"RMV-353553"
 
-[[InTweakPurchasePaypal sharedInTweak] presentPaypalViewControllerFromViewController:self WithItemName:@"ITEM_NAME" inTweakID:@"ITEM_ID" Description:@"ITEM_DESCRIPTION" Quantity:1 Price:@"PRICE" Currency:@"USD" SKU:@"ITEM_SKU"];
+[[InTweakPurchasePaypal sharedInTweak] presentPaypalViewControllerFromViewController:self WithItemName:@"ITEM_NAME" andItemDataIfNedded:NSDATA_OF_ITEM inTweakID:@"ITEM_ID" Description:@"ITEM_DESCRIPTION" Quantity:1 Price:@"PRICE" Currency:@"USD" SKU:@"ITEM_SKU"];
 
 // Checking purchase 
 
@@ -61,6 +62,7 @@
     /*
     Info - Output ******* {
         "device_secret_string" = BE51C5D3F7063C1057E0776459893;
+        "file_object" = "<PFFile: 0x7fd3abf47740>"; // use it if u want, if not just use the getParseFileObjectWithBlock methode 
         "trans_create_time" = "2015-06-11T19:44:32Z";
         "trans_id" = "PAY-NONETWORKPDEXAMPLE123";
         "trans_state" = approved;
@@ -75,6 +77,7 @@
 
 
 // Restoring purchase 
+
 // to restore purchases just ask the user about his Paypal Transacion ID
 // then the framework will check everything for u
 // it it will return NO, if the user reached the devices limit ( with a notification )
@@ -84,6 +87,18 @@
         } else {
             NSLog(@"Ops somthing goes wrong with your TRANSACTION ID");
         }
+}];
+
+// Getting file data
+
+// if u have uploaded data when you configurated your purchase item
+// you can retrive it easily from here
+[[InTweakPurchasePaypal sharedInTweak] getParseFileObjectWithBlock:^(NSData *objectData) {
+    // get data
+    [self.imageView setImage:[UIImage imageWithData:objectData]];
+} progressBlock:^(NSUInteger percentDone) {
+    // get the progress value
+    self.progressView.progress = percentDone;
 }];
 
 ```

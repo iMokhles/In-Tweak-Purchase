@@ -10,7 +10,9 @@
 #import <InTweakPurchase/InTweakPurchase.h>
 
 @interface ViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UILabel *label;
+@property (strong, nonatomic) IBOutlet UIProgressView *progressView;
 - (IBAction)testPurchase:(id)sender;
 - (IBAction)restorePurchases:(id)sender;
 
