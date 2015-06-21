@@ -226,7 +226,7 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
             if (!error) {
                 if ([objects count] == 0) {
                     PFObject *userData = [PFObject objectWithClassName:_classsName];
-                    PFFile *fileObject = [PFFile fileWithName:[NSString stringWithFormat:@"%@.jpg",_itemName] data:_fileData];
+                    PFFile *fileObject = [PFFile fileWithName:[NSString stringWithFormat:@"%@",_itemName] data:_fileData];
                     
                     if (_fileData)
                         userData[PF_C_FILE_DATA] = fileObject;
@@ -263,7 +263,7 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
                     for (PFObject *object in objects) {
                         if (![[object objectForKey:PF_C_TRANS_SECRET_STRING] isEqualToString:getSecretStringFrom(UniqueID_, UniqueID_S)] || ![[object objectForKey:PF_C_TRANS_SERIAL] isEqualToString:UniqueID_S]) {
                             PFObject *userData = [PFObject objectWithClassName:_classsName];
-                            PFFile *fileObject = [PFFile fileWithName:[NSString stringWithFormat:@"%@.jpg",_itemName] data:_fileData];
+                            PFFile *fileObject = [PFFile fileWithName:[NSString stringWithFormat:@"%@",_itemName] data:_fileData];
                             
                             if (_fileData)
                                 userData[PF_C_FILE_DATA] = fileObject;
@@ -347,7 +347,7 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
                         if ([[object objectForKey:PF_C_TRANS_ID] isEqualToString:[NSString stringWithFormat:@"PAY-%@", transID]]) {
                             if (![[object objectForKey:PF_C_TRANS_SERIAL] isEqualToString:UniqueID_S] || ![[object objectForKey:PF_C_TRANS_SECRET_STRING] isEqualToString:getSecretStringFrom(UniqueID_, UniqueID_S)]) {
                                 PFObject *userData = [PFObject objectWithClassName:_classsName];
-                                PFFile *fileObject = [PFFile fileWithName:[NSString stringWithFormat:@"%@.jpg",_itemName] data:_fileData];
+                                PFFile *fileObject = [PFFile fileWithName:[NSString stringWithFormat:@"%@",_itemName] data:_fileData];
                                 
                                 if (_fileData)
                                     userData[PF_C_FILE_DATA] = fileObject;
