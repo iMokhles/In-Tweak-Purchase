@@ -180,7 +180,7 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
     NSString *UniqueID_S = hatHazaElRakamS(device);
     
     PFQuery *query = [PFQuery queryWithClassName:_classsName];
-    //    [query whereKey:PF_C_TRANS_SERIAL equalTo:UniqueID_S];
+    [query whereKey:PF_C_TRANS_SERIAL equalTo:UniqueID_S];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             if (objects.count == 0) {

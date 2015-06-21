@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		43175CE61B345375007D3E6E /* crumpledPaperTextureBG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43175CE41B345375007D3E6E /* crumpledPaperTextureBG.jpg */; };
-		43175CE71B345375007D3E6E /* whiteBG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43175CE51B345375007D3E6E /* whiteBG.jpg */; };
 		437AF35F1B287C2E00D60480 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 437AF35E1B287C2E00D60480 /* main.m */; };
 		437AF3621B287C2E00D60480 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 437AF3611B287C2E00D60480 /* AppDelegate.m */; };
 		437AF3651B287C2E00D60480 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 437AF3641B287C2E00D60480 /* ViewController.m */; };
@@ -47,8 +45,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		43175CE41B345375007D3E6E /* crumpledPaperTextureBG.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = crumpledPaperTextureBG.jpg; sourceTree = "<group>"; };
-		43175CE51B345375007D3E6E /* whiteBG.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = whiteBG.jpg; sourceTree = "<group>"; };
 		437AF3591B287C2E00D60480 /* TestInTweak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestInTweak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		437AF35D1B287C2E00D60480 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		437AF35E1B287C2E00D60480 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -157,8 +153,6 @@
 		437AF35B1B287C2E00D60480 /* TestInTweak */ = {
 			isa = PBXGroup;
 			children = (
-				43175CE41B345375007D3E6E /* crumpledPaperTextureBG.jpg */,
-				43175CE51B345375007D3E6E /* whiteBG.jpg */,
 				437AF3601B287C2E00D60480 /* AppDelegate.h */,
 				437AF3611B287C2E00D60480 /* AppDelegate.m */,
 				437AF3631B287C2E00D60480 /* ViewController.h */,
@@ -280,8 +274,6 @@
 				437AF3681B287C2E00D60480 /* Main.storyboard in Resources */,
 				437AF36D1B287C2E00D60480 /* LaunchScreen.xib in Resources */,
 				437AF36A1B287C2E00D60480 /* Images.xcassets in Resources */,
-				43175CE61B345375007D3E6E /* crumpledPaperTextureBG.jpg in Resources */,
-				43175CE71B345375007D3E6E /* whiteBG.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

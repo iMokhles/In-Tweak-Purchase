@@ -61,7 +61,7 @@
 
 - (IBAction)testPurchase:(id)sender {
     
-    [[InTweakPurchasePaypal sharedInTweak] presentPaypalViewControllerFromViewController:[UIApplication sharedApplication].keyWindow.rootViewController WithItemName:@"Test Item  1" andItemDataIfNedded:UIImagePNGRepresentation([UIImage imageNamed:@"whiteBG.jpg"]) inTweakID:@"com.imokhles.testInTweak-1" Description:@"This is ok" Quantity:1 Price:@"0.99" Currency:@"USD" SKU:@"876589"];
+    [[InTweakPurchasePaypal sharedInTweak] presentPaypalViewControllerFromViewController:[UIApplication sharedApplication].keyWindow.rootViewController WithItemName:@"Test Item  1" andItemDataIfNedded:nil inTweakID:@"com.imokhles.testInTweak-1" Description:@"This is ok" Quantity:1 Price:@"0.99" Currency:@"USD" SKU:@"876589"];
 }
 
 - (IBAction)restorePurchases:(id)sender {
