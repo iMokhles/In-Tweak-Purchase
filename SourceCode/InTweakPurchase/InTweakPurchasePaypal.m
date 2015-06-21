@@ -409,11 +409,10 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
     NSString *UniqueID_S = hatHazaElRakamS(device);
     
     PFQuery *nilDateQuery = [PFQuery queryWithClassName:_classsName];
-    [nilDateQuery whereKeyDoesNotExist:@"Date1"];
-    
+    [nilDateQuery whereKeyDoesNotExist:PF_C_TRANS_SERIAL];
     PFQuery *notNilQuery = [PFQuery queryWithClassName:_classsName];
     [notNilQuery whereKey:PF_C_TRANS_SERIAL equalTo:UniqueID_S];
-    [notNilQuery whereKey:@"Date1" greaterThanOrEqualTo:[NSDate date]];
+    [notNilQuery whereKey:PF_C_IN_TWEAK_ID containsString:inTweakID];
     
     PFQuery *query = [PFQuery orQueryWithSubqueries:@[nilDateQuery, notNilQuery]];
     
