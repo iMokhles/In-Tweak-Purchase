@@ -41,7 +41,7 @@
 
 // Paypal Environments can be found inside InTweakPurchasePaypal.h
 // USER_DEFAULT_ID is an NSUserDefaults key to save it after complete the purchase
-[[InTweakPurchasePaypal sharedInTweak] initWithClienID:@"PAYPAL_CLIENT_ID" secretID:@"PAYPAL_CLIENT_ID" environment:PayPal_Environment andPurchaseID:@"USER_DEFAULT_ID"];
+[[InTweakPurchasePaypal sharedInTweak] initWithClienID:@"PAYPAL_CLIENT_ID" clientIDSandbox:@"PAYPAL_SANDBOX_CLIENT_ID" environment:PayPal_Environment andPurchaseID:@"USER_DEFAULT_ID"];
 
 // Configure your purchase item
 

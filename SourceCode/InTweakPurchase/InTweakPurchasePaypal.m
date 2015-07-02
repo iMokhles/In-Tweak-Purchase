@@ -10,6 +10,8 @@
 #import "PayPalMobile.h"
 #import <Parse/Parse.h>
 #import <CommonCrypto/CommonDigest.h>
+#import "InTweakPurchaseBillView.h"
+
 
 // Set the environment:
 // - For live charges, use PayPalEnvironmentProduction (default).
@@ -87,6 +89,8 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
 @property (nonatomic, strong) NSString *classsName;
 @property (nonatomic) NSUInteger devicesLimit;
 
+// bill view
+@property (nonatomic, strong) InTweakPurchaseBillView *bilView;
 @end
 
 @implementation InTweakPurchasePaypal
@@ -107,11 +111,11 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
     return self;
 }
 
-- (void)initWithClienID:(NSString *)clientID secretID:(NSString *)secretID environment:(NSString *)envi andPurchaseID:(NSString *)purchaseID {
+- (void)initWithClienID:(NSString *)clientID clientIDSandbox:(NSString *)clientIDSandbox environment:(NSString *)envi andPurchaseID:(NSString *)purchaseID {
     _purchID = purchaseID;
 
     [PayPalMobile initializeWithClientIdsForEnvironments:@{PayPalEnvironmentProduction : clientID,
-                                                           PayPalEnvironmentSandbox : secretID}];
+                                                           PayPalEnvironmentSandbox : clientIDSandbox}];
     // Set up payPalConfig
     _payPalConfig = [[PayPalConfiguration alloc] init];
     _payPalConfig.acceptCreditCards = NO;
@@ -121,6 +125,9 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
     _payPalConfig.languageOrLocale = [NSLocale preferredLanguages][0];
     _payPalConfig.payPalShippingAddressOption = PayPalShippingAddressOptionNone;
     [PayPalMobile preconnectWithEnvironment:envi];
+    
+    // billing View
+    self.bilView = [[InTweakPurchaseBillView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height/2, [UIScreen mainScreen].bounds.size.height/2)];
 }
 
 // create parse
@@ -212,6 +219,8 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
     // Dismiss the PayPalPaymentViewController.
     [paymentViewController dismissViewControllerAnimated:YES completion:^{
         //
+        
+        NSLog(@"%@\n\n\n\n\n%@\n\n\n\n%@",completedPayment, completedPayment.confirmation, [completedPayment.confirmation objectForKey:@"response"]);
         NSString *transID = [[completedPayment.confirmation objectForKey:@"response"] objectForKey:@"id"];
         NSString *stateID = [[completedPayment.confirmation objectForKey:@"response"] objectForKey:@"state"];
         NSString *ctimeID = [[completedPayment.confirmation objectForKey:@"response"] objectForKey:@"create_time"];
@@ -220,8 +229,15 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
         NSString *UniqueID_S = hatHazaElRakamS(device);
         
         
-        PFQuery *query = [PFQuery queryWithClassName:_classsName];
-        //    [query whereKey:PF_C_TRANS_SERIAL equalTo:UniqueID_S];
+//        PFQuery *nilDateQuery = [PFQuery queryWithClassName:_classsName];
+//        [nilDateQuery whereKeyDoesNotExist:PF_C_TRANS_SERIAL];
+//        PFQuery *notNilQuery = [PFQuery queryWithClassName:_classsName];
+//        [notNilQuery whereKey:PF_C_TRANS_SERIAL equalTo:UniqueID_S];
+//        [notNilQuery whereKey:PF_C_IN_TWEAK_ID equalTo:inTweakID];
+        
+        PFQuery *query  = [PFQuery queryWithClassName:_classsName];
+        [query whereKey:PF_C_TRANS_SERIAL equalTo:UniqueID_S];
+        //notNilQuery;//[PFQuery orQueryWithSubqueries:@[nilDateQuery, notNilQuery]];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (!error) {
                 if ([objects count] == 0) {
@@ -243,6 +259,12 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
                     if ([stateID isEqualToString:@"approved"]) {
                         [[NSUserDefaults standardUserDefaults]setBool:YES forKey:_purchID];
                         [[NSNotificationCenter defaultCenter] postNotificationName:IAProductPurchasedNotification object:nil];
+                        
+                        [self.bilView transactionWithItemName:self.classsName state:stateID purchaseDate:ctimeID andPaymentID:transID];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self.bilView showBill];
+                        });
+                        
                         [userData saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                             if (succeeded) {
                                 // The object has been saved.
@@ -280,6 +302,12 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
                             if ([stateID isEqualToString:@"approved"]) {
                                 [[NSUserDefaults standardUserDefaults]setBool:YES forKey:_purchID];
                                 [[NSNotificationCenter defaultCenter] postNotificationName:IAProductPurchasedNotification object:nil];
+                                
+                                [self.bilView transactionWithItemName:self.classsName state:stateID purchaseDate:ctimeID andPaymentID:transID];
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    [self.bilView showBill];
+                                });
+                                
                                 [userData saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                                     if (succeeded) {
                                         // The object has been saved.
@@ -375,11 +403,12 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
                                             
                                         }
                                     }];
+                                    callBack(YES);
                                 } else {
                                     NSLog(@"Something Wrong");
                                     [[NSNotificationCenter defaultCenter] postNotificationName:IAFailedProductPurchasedNotification object:nil];
+                                    callBack(NO);
                                 }
-                                callBack(YES);
                             } else {
                                 [[NSUserDefaults standardUserDefaults]setBool:YES forKey:_purchID];
                                 [[NSNotificationCenter defaultCenter] postNotificationName:IAProductPurchasedNotification object:nil];
@@ -408,16 +437,17 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
     NSString *UniqueID_ = hatHazaElRakam(device);
     NSString *UniqueID_S = hatHazaElRakamS(device);
     
-    PFQuery *nilDateQuery = [PFQuery queryWithClassName:_classsName];
-    [nilDateQuery whereKeyDoesNotExist:PF_C_TRANS_SERIAL];
-    PFQuery *notNilQuery = [PFQuery queryWithClassName:_classsName];
-    [notNilQuery whereKey:PF_C_TRANS_SERIAL equalTo:UniqueID_S];
-    [notNilQuery whereKey:PF_C_IN_TWEAK_ID containsString:inTweakID];
-    
-    PFQuery *query = [PFQuery orQueryWithSubqueries:@[nilDateQuery, notNilQuery]];
+//    PFQuery *nilDateQuery = [PFQuery queryWithClassName:_classsName];
+//    [nilDateQuery whereKeyDoesNotExist:PF_C_TRANS_SERIAL];
+//    PFQuery *notNilQuery = [PFQuery queryWithClassName:_classsName];
+//    [notNilQuery whereKey:PF_C_TRANS_SERIAL equalTo:UniqueID_S];
+//    [notNilQuery whereKey:PF_C_IN_TWEAK_ID equalTo:inTweakID];
+//    
+    PFQuery *query = [PFQuery queryWithClassName:_classsName];
+    //[PFQuery orQueryWithSubqueries:@[nilDateQuery, notNilQuery]];
     
 //    [query whereKey:PF_C_IN_TWEAK_ID containsString:inTweakID];
-//    [query whereKey:PF_C_TRANS_SERIAL equalTo:UniqueID_S];
+    [query whereKey:PF_C_TRANS_SERIAL equalTo:UniqueID_S];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             if (objects.count == 0) {
@@ -438,6 +468,13 @@ static NSString *getSecretStringFrom(NSString *sec1, NSString *sec2) {
                             [mutableDictionary setObject:[object objectForKey:PF_C_TRANS_ID] forKey:PF_C_TRANS_ID];
                             
                             NSDictionary *transInfoDict = [NSDictionary.alloc initWithDictionary:mutableDictionary];
+                            
+//                            [self.bilView transactionWithItemName:self.classsName state:[object objectForKey:PF_C_TRANS_STATE] purchaseDate:[object objectForKey:PF_C_TRANS_DATE] andPaymentID:[object objectForKey:PF_C_TRANS_ID]];
+//                            
+//                            dispatch_async(dispatch_get_main_queue(), ^{
+//                                [self.bilView showBill];
+//                            });
+                            
                             
                             callBack(transInfoDict, YES);
                         } else {

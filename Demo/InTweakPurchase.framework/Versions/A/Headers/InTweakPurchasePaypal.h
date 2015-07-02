@@ -55,7 +55,7 @@ typedef void(^progressBlock)(NSUInteger percentDone);
 - (void)setParseApplicationID:(NSString *)appID clientKey:(NSString *)clientKey className:(NSString *)cName devicesLimit:(NSInteger)dLimit launchingWithOptions:(NSDictionary *)launchOptions;
 
 // setup your paypal IDs and your UserDefault ID ( PurchaseID )
-- (void)initWithClienID:(NSString *)clientID secretID:(NSString *)secretID environment:(NSString *)envi andPurchaseID:(NSString *)purchaseID;
+- (void)initWithClienID:(NSString *)clientID clientIDSandbox:(NSString *)clientIDSandbox environment:(NSString *)envi andPurchaseID:(NSString *)purchaseID;
 // create payment item
 - (void)presentPaypalViewControllerFromViewController:(id)target WithItemName:(NSString *)itemName andItemDataIfNedded:(NSData *)itemData inTweakID:(NSString *)inTweak Description:(NSString *)desc Quantity:(NSInteger)integer Price:(NSString *)price Currency:(NSString *)currency SKU:(NSString *)sku;
 // retrieve file object from Parse

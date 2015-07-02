@@ -22,16 +22,20 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		436BEA5E1B2B0C84007E5A5A /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3BB1B28842E00D60480 /* Bolts.framework */; };
+		436BEA5F1B2B0C86007E5A5A /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3C71B28842E00D60480 /* libPayPalMobile.a */; };
+		436BEA601B2B0C88007E5A5A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3C81B28842E00D60480 /* Parse.framework */; };
+		436BEA611B2B0C8A007E5A5A /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3C91B28842E00D60480 /* ParseCrashReporting.framework */; };
+		436BEA621B2B0C8C007E5A5A /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3CA1B28842E00D60480 /* ParseFacebookUtils.framework */; };
+		436BEA631B2B0C8D007E5A5A /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3CB1B28842E00D60480 /* ParseUI.framework */; };
+		43745A511B44FA5D00D14B14 /* KLCPopup.h in Headers */ = {isa = PBXBuildFile; fileRef = 43745A4F1B44FA5D00D14B14 /* KLCPopup.h */; };
+		43745A521B44FA5D00D14B14 /* KLCPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 43745A501B44FA5D00D14B14 /* KLCPopup.m */; };
+		43745A551B44FB2F00D14B14 /* InTweakPurchaseBillView.h in Headers */ = {isa = PBXBuildFile; fileRef = 43745A531B44FB2F00D14B14 /* InTweakPurchaseBillView.h */; };
+		43745A561B44FB2F00D14B14 /* InTweakPurchaseBillView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43745A541B44FB2F00D14B14 /* InTweakPurchaseBillView.m */; };
 		437AF3A51B28836900D60480 /* InTweakPurchase.h in Headers */ = {isa = PBXBuildFile; fileRef = 437AF3A41B28836900D60480 /* InTweakPurchase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		437AF3AD1B28836900D60480 /* libInTweakPurchase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3A11B28836900D60480 /* libInTweakPurchase.a */; };
-		437AF3D31B28842E00D60480 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3BB1B28842E00D60480 /* Bolts.framework */; };
 		437AF3D41B28842E00D60480 /* FBMissingSymbols.m in Sources */ = {isa = PBXBuildFile; fileRef = 437AF3C41B28842E00D60480 /* FBMissingSymbols.m */; };
 		437AF3D51B28842E00D60480 /* InTweakPurchasePaypal.m in Sources */ = {isa = PBXBuildFile; fileRef = 437AF3C61B28842E00D60480 /* InTweakPurchasePaypal.m */; };
-		437AF3D61B28842E00D60480 /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3C71B28842E00D60480 /* libPayPalMobile.a */; };
-		437AF3D71B28842E00D60480 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3C81B28842E00D60480 /* Parse.framework */; };
-		437AF3D81B28842E00D60480 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3C91B28842E00D60480 /* ParseCrashReporting.framework */; };
-		437AF3D91B28842E00D60480 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3CA1B28842E00D60480 /* ParseFacebookUtils.framework */; };
-		437AF3DA1B28842E00D60480 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AF3CB1B28842E00D60480 /* ParseUI.framework */; };
 		437AF3DE1B28857700D60480 /* InTweakPurchasePaypal.h in Headers */ = {isa = PBXBuildFile; fileRef = 437AF3C51B28842E00D60480 /* InTweakPurchasePaypal.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -53,6 +57,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		43745A4F1B44FA5D00D14B14 /* KLCPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLCPopup.h; sourceTree = "<group>"; };
+		43745A501B44FA5D00D14B14 /* KLCPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLCPopup.m; sourceTree = "<group>"; };
+		43745A531B44FB2F00D14B14 /* InTweakPurchaseBillView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InTweakPurchaseBillView.h; sourceTree = "<group>"; };
+		43745A541B44FB2F00D14B14 /* InTweakPurchaseBillView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InTweakPurchaseBillView.m; sourceTree = "<group>"; };
 		437AF3A11B28836900D60480 /* libInTweakPurchase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libInTweakPurchase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		437AF3A41B28836900D60480 /* InTweakPurchase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InTweakPurchase.h; sourceTree = "<group>"; };
 		437AF3AC1B28836900D60480 /* InTweakPurchaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InTweakPurchaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,12 +96,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				437AF3DA1B28842E00D60480 /* ParseUI.framework in Frameworks */,
-				437AF3D61B28842E00D60480 /* libPayPalMobile.a in Frameworks */,
-				437AF3D71B28842E00D60480 /* Parse.framework in Frameworks */,
-				437AF3D31B28842E00D60480 /* Bolts.framework in Frameworks */,
-				437AF3D91B28842E00D60480 /* ParseFacebookUtils.framework in Frameworks */,
-				437AF3D81B28842E00D60480 /* ParseCrashReporting.framework in Frameworks */,
+				436BEA5E1B2B0C84007E5A5A /* Bolts.framework in Frameworks */,
+				436BEA5F1B2B0C86007E5A5A /* libPayPalMobile.a in Frameworks */,
+				436BEA611B2B0C8A007E5A5A /* ParseCrashReporting.framework in Frameworks */,
+				436BEA631B2B0C8D007E5A5A /* ParseUI.framework in Frameworks */,
+				436BEA621B2B0C8C007E5A5A /* ParseFacebookUtils.framework in Frameworks */,
+				436BEA601B2B0C88007E5A5A /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +116,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43745A4E1B44FA5D00D14B14 /* KLCPopup */ = {
+			isa = PBXGroup;
+			children = (
+				43745A4F1B44FA5D00D14B14 /* KLCPopup.h */,
+				43745A501B44FA5D00D14B14 /* KLCPopup.m */,
+			);
+			path = KLCPopup;
+			sourceTree = "<group>";
+		};
 		437AF3981B28836900D60480 = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +149,8 @@
 				437AF3DB1B28844800D60480 /* Vendors */,
 				437AF3C51B28842E00D60480 /* InTweakPurchasePaypal.h */,
 				437AF3C61B28842E00D60480 /* InTweakPurchasePaypal.m */,
+				43745A531B44FB2F00D14B14 /* InTweakPurchaseBillView.h */,
+				43745A541B44FB2F00D14B14 /* InTweakPurchaseBillView.m */,
 				437AF3A41B28836900D60480 /* InTweakPurchase.h */,
 			);
 			path = InTweakPurchase;
@@ -156,6 +175,7 @@
 		437AF3DB1B28844800D60480 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				43745A4E1B44FA5D00D14B14 /* KLCPopup */,
 				437AF3BB1B28842E00D60480 /* Bolts.framework */,
 				437AF3BC1B28842E00D60480 /* CardIO.h */,
 				437AF3BD1B28842E00D60480 /* CardIOCreditCardInfo.h */,
@@ -191,6 +211,8 @@
 			files = (
 				437AF3A51B28836900D60480 /* InTweakPurchase.h in Headers */,
 				437AF3DE1B28857700D60480 /* InTweakPurchasePaypal.h in Headers */,
+				43745A511B44FA5D00D14B14 /* KLCPopup.h in Headers */,
+				43745A551B44FB2F00D14B14 /* InTweakPurchaseBillView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +338,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43745A561B44FB2F00D14B14 /* InTweakPurchaseBillView.m in Sources */,
+				43745A521B44FA5D00D14B14 /* KLCPopup.m in Sources */,
 				437AF3D41B28842E00D60480 /* FBMissingSymbols.m in Sources */,
 				437AF3D51B28842E00D60480 /* InTweakPurchasePaypal.m in Sources */,
 			);
@@ -384,7 +408,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)/Headers";
@@ -427,7 +451,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)/Headers";
